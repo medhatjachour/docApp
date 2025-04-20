@@ -7,7 +7,9 @@ export interface Doctor {
   degree: string;
   experience: string;
   about: string;
+  rating: number;
   fees: number;
+  availability: boolean;
   address: {
     line1: string;
     line2: string;
@@ -30,9 +32,12 @@ export interface DoctorInterface {
 
     degree: string;
 
+    availability: boolean;
+
     experience: string;
 
     about: string;
+    rating: number;
 
     fees: number;
 

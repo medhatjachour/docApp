@@ -23,8 +23,7 @@ const RelatedDocs = ({ docId, specialty }: { docId: string|undefined, specialty:
         <p className='sm:w-2/3  text-center text-clip text-sm'>Simply browse through our extensive list of trusted doctors.</p>
         <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
             {relDocs.slice(0, 5).map((doctor, index) => (
-              
-                <CardDoctor key={index} {...doctor} />
+              <CardDoctor  key={index} doctor={doctor} />
             ))}
         </div>
        
