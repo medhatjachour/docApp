@@ -6,7 +6,6 @@ interface DoctorCardProps {
   doctor: Doctor;
 }
 const CardDoctor = ({ doctor }: DoctorCardProps) => {
-  console.log(doctor)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
     <>

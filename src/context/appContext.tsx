@@ -65,6 +65,7 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => 
   };
 
   const getAvailableTimes = (doctorId: number, date: string): string[] => {
+    console.log(doctorId);
     return availableTimes[date] || [];
   };
 

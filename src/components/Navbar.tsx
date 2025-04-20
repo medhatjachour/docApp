@@ -5,7 +5,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false);
-  const [token, setToken] = useState(true);
   return (
     <div className=" flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
       <NavLink to="/">
@@ -34,7 +33,7 @@ const Navbar = () => {
       </ul>
 
       <div className=" flex items-center gap-4">
-        {token ? (
+ 
           <div className="flex items-center gap-2 cursor-pointer group relative">
             <img
               className=" w-8 rounded-full"
@@ -65,14 +64,6 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-        ) : (
-          <button
-            onClick={() => navigate("/login")}
-            className="bg-primary text-white px-8 py-3 rounded-full float-right hidden md:block "
-          >
-            Create account
-          </button>
-        )}
         <button
           onClick={() => setShowMenu(!showMenu)}
           className="w-6 md:hidden"
