@@ -13,10 +13,10 @@ const Doctors = () => {
   const [minFee, setMinFee] = useState(0);
   const [minRating, setMinRating] = useState(0);
   const [availability, setAvailability] = useState(false);
-  const maxFee = 500;
+  const maxFee = 600;
+
   const applyFilter = () => {
     let filtered = doctors;
-
     // Specialty filter
     if (specialty) {
       filtered = filtered.filter((doctor) => doctor.speciality === specialty);
@@ -27,8 +27,7 @@ const Doctors = () => {
 
     // Rating filter (float comparison)
     filtered = filtered.filter((doctor) => doctor.rating >= minRating);
-    filtered = filtered.filter((doctor) => doctor.rating >= minRating);
-
+    // Availability filter
     if (availability) {
       filtered = filtered.filter((doctor) => doctor.availability === true);
     }

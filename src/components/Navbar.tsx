@@ -61,12 +61,7 @@ const Navbar = () => {
                 >
                   My Appointments
                 </button>
-                <button
-                  onClick={() => setToken(false)}
-                  className="hover:text-black cursor-pointer py-2"
-                >
-                  Logout
-                </button>
+                
               </div>
             </div>
           </div>
