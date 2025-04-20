@@ -83,7 +83,7 @@ const Doctors = () => {
                     ? navigate('/doctors')
                     : navigate(`/doctors/${spec}`)
                 }
-                className={`w-full text-left pl-3 py-1.5 border border-gray-300 rounded transition-all ${specialty === spec ? "bg-indigo-100 text-black" : ""
+                className={`w-full text-left pl-3 py-1.5 border border-gray-300 rounded transition-all ${specialty === spec ? "bg-primary/50 text-white" : ""
                   }`}
               >
                 {spec}
@@ -102,9 +102,9 @@ const Doctors = () => {
               onChange={(e) => setMinFee(+e.target.value)}
               className="w-full h-2 rounded-lg appearance-none cursor-pointer"
               style={{
-                background: `linear-gradient(to right, #e0e7ff ${(minFee / maxFee) * 100
+                background: `linear-gradient(to right, rgb(25 122 128 / 0.5) ${(minFee / maxFee) * 100
                   }%, #e5e7eb ${(minFee / maxFee) * 100}%)`,
-                accentColor: "#e0e7ff", // Indigo-100 for thumb
+                accentColor: "rgb(25 122 128 / 0.5)", // Indigo-100 for thumb
               }}
             />
             <div className="flex justify-between">
@@ -118,7 +118,7 @@ const Doctors = () => {
             <select
               value={minRating}
               onChange={(e) => setMinRating(+e.target.value)}
-              className="border border-gray-300 rounded p-1 bg-indigo-100"
+              className="border border-primary/50 rounded p-1 bg-primary/50 text-white"
             >
               {[0, 1, 2, , 3, 3.5, 4, 4.5, 5].map((rating) => (
                 <option key={rating} value={rating}>
@@ -136,13 +136,13 @@ const Doctors = () => {
               checked={availability}
               onChange={(e) => setAvailability(e.target.checked)}
               className="w-5 h-5 rounded border-gray-300 text-indigo-500 focus:ring-indigo-200 cursor-pointer"
-              style={{ accentColor: "#e0e7ff" }} />
+              style={{ accentColor: "rgb(25 122 128 / 0.5)" }} />
           </div>
 
           {/* Reset Button */}
           <button
             onClick={resetFilters}
-            className="w-full pl-3 py-1.5 border border-gray-300 rounded transition-all hover:bg-indigo-100"
+            className="w-full pl-3 py-1.5 border border-gray-300 rounded transition-all hover:bg-primary/50 hover:text-white"
           >
             Reset Filters
           </button>

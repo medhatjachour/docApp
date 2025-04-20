@@ -3,7 +3,7 @@ import { doctors } from "../assets/assets";
 import { Doctor } from '../types/doctorsTypes';
 
 interface Booking {
-  id: number;
+  id: string;
   name: string;
   specialty: string;
   date: string;
@@ -16,6 +16,7 @@ interface AppContextValue {
   bookAppointment: (doctor: Doctor, date: string, time: string) => void;
   getAvailableTimes: (doctorId: number, date: string) => string[];
   getBookings: () => Booking[];
+  cancelAppointment: (booking: Booking) => void;
 }
 
 export const AppContext = createContext<AppContextValue | undefined>(undefined);
@@ -36,7 +37,7 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => 
   const bookAppointment = (doctor: Doctor, date: string, time: string) => {
     const bookings: Booking[] = JSON.parse(localStorage.getItem('bookings') || '[]');
     const newBooking = {
-      id: Number(doctor._id),
+      id: doctor._id,
       name: doctor.name,
       specialty: doctor.speciality,
       date,
@@ -47,8 +48,23 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => 
     alert(`Appointment booked successfully with ${doctor.name} on ${date} at ${time}!`);
   };
 
+  const cancelAppointment = (booking: Booking) => {
+    const bookings: Booking[] = JSON.parse(localStorage.getItem('bookings') || '[]');
+    const updatedBookings = bookings.filter(
+      (b) =>
+        !(
+          b.id === booking.id &&
+          b.date === booking.date &&
+          b.time === booking.time &&
+          b.name === booking.name &&
+          b.specialty === booking.specialty
+        )
+    );
+    localStorage.setItem('bookings', JSON.stringify(updatedBookings));
+    alert(`Appointment with ${booking.name} on ${booking.date} at ${booking.time} has been cancelled.`);
+  };
+
   const getAvailableTimes = (doctorId: number, date: string): string[] => {
-    // In a real app, this would query an API for available times
     return availableTimes[date] || [];
   };
 
@@ -62,6 +78,7 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => 
     bookAppointment,
     getAvailableTimes,
     getBookings,
+    cancelAppointment,
   }), [availableTimes]);
 
   return (

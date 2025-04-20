@@ -6,7 +6,7 @@ const Contact = () => {
       <div className="text-center text-2xl text-gray-500">
         <p>
           {" "}
-          Contact <span className="text-gray-700 font-semibold">Us</span>
+          Contact <span className="text-gray-700 font-semibold">Me</span>
         </p>
       </div>
       <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28 text-sm">
@@ -24,10 +24,10 @@ const Contact = () => {
           <p className=" text-gray-500 ">Tel: (+20) 1015683986</p>
           <p className=" text-gray-500 ">Email: medhatashour19@gmail.com</p>
           <p className=" text-gray-600 font-semibold text-lg ">
-            Careers at PRESCRIPTO
+            Get well soon
           </p>
           <p className=" text-gray-500 ">
-            Learn more about our teams and job openings.
+            Learn more about me.
           </p>
           <button className="rounded-sm border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">
             Contact Me

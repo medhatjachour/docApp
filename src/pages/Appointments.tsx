@@ -8,11 +8,11 @@ import RelatedDocs from '../components/RelatedDocs';
 const Appointments = () => {
   const { docId } = useParams();
 
-  const context = useContext(AppContext) || {
-    doctors: [],
-    currencySymbol: "$",
-  };
-  const { doctors, currencySymbol } = context;
+  const context = useContext(AppContext);
+  if (!context) {
+    return <div>Error: AppContext not available</div>;
+  }
+  const { doctors, currencySymbol, bookAppointment } = context;
   const [docInfo, setDocInfo] = useState<DoctorInterface | null>(null);
   // time slots
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -70,6 +70,16 @@ const Appointments = () => {
     }
   };
 
+  const handleBookAppointment = () => {
+    if (!docInfo || !docSlotsTime || docSlots.length === 0) {
+      alert("Please select a time slot before booking");
+      return;
+    }
+
+    const selectedDate = docSlots[docSlotsIndex][0].datetime.toISOString().split('T')[0];
+    bookAppointment(docInfo, selectedDate, docSlotsTime);
+  };
+
   useEffect(() => {
     fetchDocData();
   }, [docId, doctors]);
@@ -103,7 +113,7 @@ const Appointments = () => {
             <p>
               {docInfo.degree} - {docInfo.speciality}
             </p>
-            <button className="py-0.5 px-2 border  rounded-full text-xs">
+            <button className="py-0.5 px-2 border rounded-full text-xs">
               {docInfo.experience}
             </button>
           </div>
@@ -133,7 +143,10 @@ const Appointments = () => {
           {docSlots.length >= 0 &&
             docSlots.map((slot, index) => (
               <button
-              onClick={() => setDocSlotsIndex(index)}
+                onClick={() => {
+                  setDocSlotsIndex(index);
+                  setDocSlotsTime(""); // Reset time when changing date
+                }}
                 key={index}
                 className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
                   index === docSlotsIndex
@@ -149,20 +162,28 @@ const Appointments = () => {
         <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4 horizontal-scroll">
           {docSlots.length >= 0 &&
             docSlots[docSlotsIndex]?.map((slot, index) => (
-              <button onClick={() => setDocSlotsTime(slot.time)}
-                className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${slot.time ===docSlotsTime ? "bg-primary text-white" : "border border-gray-300"}`}
+              <button
+                onClick={() => setDocSlotsTime(slot.time)}
+                className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
+                  slot.time === docSlotsTime
+                    ? "bg-primary text-white"
+                    : "border border-gray-300"
+                }`}
                 key={index}
               >
                 {slot.time.toLowerCase()}
               </button>
             ))}
         </div>
-        <button className="bg-primary text-white py-3 text-sm px-14 rounded-full font-light my-6 mt-4">
-        Book an appointment
+        <button
+          onClick={handleBookAppointment}
+          className="bg-primary text-white py-3 text-sm px-14 rounded-full font-light my-6 mt-4"
+        >
+          Book an appointment
         </button>
       </div>
       {/* list of related docs  */}
-      <RelatedDocs docId = {docId} specialty = {docInfo.speciality}/>
+      <RelatedDocs docId={docId} specialty={docInfo.speciality} />
     </div>
   ) : (
     <div>loading</div>

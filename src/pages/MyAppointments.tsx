@@ -1,14 +1,17 @@
-import { useContext } from "react";
+
+// MyAppointments Component
+import { useContext, useState } from "react";
 import { AppContext } from "../context/appContext";
+
 const MyAppointments = () => {
   const context = useContext(AppContext);
   if (!context) {
     return <div>Error: AppContext not available</div>;
   }
 
-  const { doctors, getBookings } = context;
+  const { doctors, getBookings, cancelAppointment } = context;
   const bookings = getBookings();
-  console.log(bookings)
+  const [isUpdated, setIsUpdated] = useState(false);
 
   // Function to format date and time
   const formatDateTime = (date: string, time: string) => {
@@ -29,8 +32,8 @@ const MyAppointments = () => {
         ) : (
           bookings.map((booking, index) => {
             // Find doctor details for the booking
-            const doctor = doctors.find(d => Number(d._id) === booking.id);
-            // if (!doctor) return null;
+            const doctor = doctors.find(d => d._id === booking.id);
+            // if (!doctor) return null;        
 
             return (
               <div
@@ -39,7 +42,7 @@ const MyAppointments = () => {
               >
                 <div>
                   <img
-                    className="w-32 bg-indigo-50"
+                    className="w-32 bg-primary/50 rounded-lg"
                     src={doctor?.image}
                     alt={doctor?.name}
                   />
@@ -59,10 +62,11 @@ const MyAppointments = () => {
                 </div>
                 <div></div>
                 <div className="flex flex-col gap-2 justify-end">
-                  <button className="text-sm text-stone-500 sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300">
-                    Pay Online
-                  </button>
-                  <button className="text-sm text-stone-500 sm:min-w-48 py-2 border hover:bg-red-600 hover:text-white transition-all duration-300">
+              
+                  <button
+                    onClick={() =>{ cancelAppointment(booking);setIsUpdated(!isUpdated)}}
+                    className="text-sm text-stone-500 sm:min-w-48 py-2 border hover:bg-red-600 hover:text-white transition-all duration-300"
+                  >
                     Cancel Appointment
                   </button>
                 </div>
@@ -74,5 +78,4 @@ const MyAppointments = () => {
     </div>
   );
 };
-
 export default MyAppointments;

@@ -12,14 +12,14 @@ const CardDoctor = ({ doctor }: DoctorCardProps) => {
     <>
       <div
         onClick={() => setIsModalOpen(true)}
-        className="border relative border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-11px] transition-all duration-500"
+        className="border relative border-primary/40 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-11px] transition-all duration-500"
       >
         <div className='absolute top-2 right-2  flex items-center gap-1 max-w-10 max-h-10 z-10'> {doctor?.rating} <img src={assets.star_rating} alt='star' className='w-4 h-4' />
         </div>
       <img
         src={doctor?.image}
         alt={doctor?.name}
-        className="w-full bg-blue-50 hover:bg-blue-200 transition-all duration-300 h-48 object-contain rounded-t-lg"
+        className="w-full bg-primary/10 hover:bg-primary/40 transition-all duration-300 h-48 object-contain rounded-t-lg"
       />
       <div className="p-4">
         <div className="flex items-center justify-between gap-2 text-sm text-center text-green-500">

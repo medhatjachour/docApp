@@ -61,7 +61,7 @@ This project is a full-stack web application designed to streamline the process 
    cd docApp
    ```
    
-2. Install dependencies for both frontend and backend::
+2. Install dependencies for both frontend:
    ```bash
         npm install
     ```
