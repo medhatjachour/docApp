@@ -4,12 +4,15 @@ A web application built with React for the frontend, designed to allow users to 
 
 ---
 
+## **live preview** 
+https://doc-app-coral.vercel.app/
+
 ## 🖼️ **Screenshots**
 
-![Home Page](https://github.com/medhatjachour/doctorApp/blob/main/samples/1.png?raw=true)
+![Home Page](https://github.com/medhatjachour/docApp/blob/main/samples/1.png?raw=true)
 *Home Page - Browse doctors and book appointments.*
 
-![Appointment Booking](https://github.com/medhatjachour/doctorApp/blob/main/samples/a1.png?raw=true)
+![Appointment Booking](https://github.com/medhatjachour/docApp/blob/main/samples/a1.png?raw=true)
 *Appointment Booking - Select a time slot and confirm your appointment.*
 
 ---
