@@ -12,7 +12,7 @@ https://doc-app-coral.vercel.app/
 ![Home Page](https://github.com/medhatjachour/docApp/blob/main/samples/1.png?raw=true)
 *Home Page - Browse doctors and book appointments.*
 
-![Appointment Booking](https://github.com/medhatjachour/docApp/blob/main/samples/a1.png?raw=true)
+![Appointment Booking](https://github.com/medhatjachour/docApp/blob/main/samples/2.png?raw=true)
 *Appointment Booking - Select a time slot and confirm your appointment.*
 
 ---
